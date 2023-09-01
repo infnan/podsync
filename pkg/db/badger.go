@@ -104,7 +104,7 @@ func (b *Badger) AddFeed(_ context.Context, feedID string, feed *model.Feed) err
 		// Append new episodes
 		for _, episode := range feed.Episodes {
 			episodeKey := b.getKey(episodePath, feedID, episode.ID)
-			err := b.setObj(txn, episodeKey, episode, false)
+			err := b.setObj(txn, episodeKey, episode, true)
 			if err == nil || err == model.ErrAlreadyExists {
 				// Do nothing
 			} else {
